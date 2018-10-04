@@ -1,0 +1,7 @@
+{
+  "name": "ToposYa",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

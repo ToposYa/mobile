@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ sector.name }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="searchButton()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-tabs>
+  <ion-tab tabIcon="information-circle" [root]="tabInfo" [rootParams]="tabParams"></ion-tab>
+  <ion-tab tabIcon="map" [root]="tabMap" [rootParams]="tabParams"></ion-tab>
+  <ion-tab tabIcon="images" [root]="tabTopoImages" [rootParams]="tabParams"></ion-tab>
+</ion-tabs>`

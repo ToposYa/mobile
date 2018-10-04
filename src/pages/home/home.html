@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title *ngIf="homePage == false">
+      {{ navTitle }}
+    </ion-title>
+    <ion-title *ngIf="homePage == true">
+      Inicio
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="searchButton()" *ngIf="homePage == false">
+        <ion-icon name="search"></ion-icon>
+      </button>
+      <button *ngIf="isSyncable == true" ion-button icon-only color="royal" (click)="syncButton()">
+        <ion-icon name="sync"></ion-icon>
+      </button>
+      <button *ngIf="isDownloadable == true" ion-button icon-only color="royal" (click)="downloadButton()">
+        <ion-icon name="download"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div id="offline_message">
+    Actualmente tu dispositivo esta sin conexion. Disfruta del campo y la escalada :) 
+  </div>
+  <iframe 
+    id='toposya_online_view' 
+    class='webPage' 
+    name='eventsPage' 
+    [src]="backendSafeUrl">
+  </iframe>
+</ion-content>

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>Contacto</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div id="offline_message">
+    Actualmente tu dispositivo esta sin conexion. Disfruta del campo y la escalada :) 
+  </div>
+  <iframe 
+    id='toposya_online_view' 
+    class='webPage' 
+    name='eventsPage' 
+    [src]="backendSafeUrl">
+  </iframe>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Sectores
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="searchButton()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="loader" id="sectors_index_loader">
+    <div class="loading"><div class="outer"></div><div class="inner"></div></div>
+  </div>
+  <ion-card *ngFor="let sector of sectors">
+    <div class="ribbon" *ngIf="restricted(sector)"><span>prohibido</span></div>
+
+    <ng-progress [spinner]="false" id="sector_update_progress_{{sector.id}}"></ng-progress>
+
+    <ion-item (click)="goToSectorPage(sector)">
+      <h1>{{ sector.name }}</h1>
+    </ion-item>
+
+    <img src="{{ sector.local_image }}" (click)="goToSectorPage(sector)" 
+      class="sector-image" (load)="imageLoaded()" (error)="imageLoaded()">
+
+    <ion-card-content (click)="goToSectorPage(sector)">
+      <p>{{ sector.description_short }}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button clear (click)="updateButton(sector.id)">
+          <ion-icon name="sync" padding></ion-icon>
+          <div> Actualizar</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button clear item-end  color="danger" (click)="deleteButton(sector.id)">
+          <ion-icon name="trash" padding></ion-icon>
+          <div> Eliminar</div>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

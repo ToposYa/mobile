@@ -1,0 +1,59 @@
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform } from 'ionic-angular';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { HomePage } from '../pages/home/home';
+import { SectorsIndexPage } from '../pages/sectors-index/sectors-index';
+import { TermsAndConditionsPage } from '../pages/terms-and-conditions/terms-and-conditions';
+import { MisionVisionValuesPage } from '../pages/mision-vision-values/mision-vision-values';
+import { TopoImagesShowPage  } from '../pages/topo-images-show/topo-images-show'; // remove
+import { SectorProvider } from '../providers/sector/sector'; // remove
+
+@Component({
+  templateUrl: 'app.html'
+})
+export class MyApp {
+  @ViewChild(Nav) nav: Nav;
+
+  rootPage: any = HomePage;
+
+  pages: Array<{title: string, component: any}>;
+
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public sectorProvider: SectorProvider, // remove
+  ) {
+    this.initializeApp();
+
+    // used for an example of ngFor and navigation
+    this.pages = [
+      { title: 'Busqueda', component: HomePage },
+      { title: 'Descargas', component: SectorsIndexPage },
+      { title: 'Mision / Vision', component: MisionVisionValuesPage },
+      { title: 'Terminos y Condiciones', component: TermsAndConditionsPage },
+    ];
+
+    this.sectorProvider.findById(11,(sector) => { // remove
+      let params = {topoImage: sector.topo_images[0], topoImages: sector.topo_images};
+      this.nav.setRoot(TopoImagesShowPage,params);
+    });
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+  }
+
+  openPage(page) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.nav.setRoot(page.component);
+  }
+}

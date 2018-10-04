@@ -1,0 +1,105 @@
+<ion-content>
+  <ion-scroll scrollX="true" scrollY="true" style="height: 50%;" [id]="scrollTopId">
+    <ion-grid id="topo_image_grid">
+      <ion-row>
+        <canvas [id]="topoImageId" [width]="topoImage.canvas_width" 
+              [height]="topoImage.canvas_height" 
+              style="width: 100%; height: 100%;"></canvas>
+      </ion-row>
+    </ion-grid>
+  </ion-scroll>
+
+  <ion-scroll scrollX="true" scrollY="true" style="height: 50%;" [id]="scrollBottomId">
+    <ion-grid>
+      <ion-row *ngFor="let line of topoImage.lines" class="line">
+        <table class="line">
+          <tbody>
+            <tr>
+              <td class="index">
+                <div class="number">
+                  {{ line.index }}
+                </div>
+              </td>
+              <td class="name">
+                {{ line.name }}
+                <div class='rating'>
+                  <img src="assets/imgs/star.png" *ngIf="line.rating > 0">
+                  <div class="value" *ngIf="line.rating > 0">
+                    {{ line.rating }}
+                  </div>
+                </div>
+                <img src="assets/imgs/dangerous.png" *ngIf="line.dangerous == true">
+                <img src="assets/imgs/route-icons-crimpy.svg" *ngIf="line.crimpy == true">
+                <img src="assets/imgs/route-icons-technical.svg" *ngIf="line.technical == true">
+                <img src="assets/imgs/route-icons-pumpy.svg" *ngIf="line.pumpy == true">
+                <img src="assets/imgs/route-icons-reachy.svg" *ngIf="line.reachy == true">
+                <img src="assets/imgs/route-icons-cruxy.svg" *ngIf="line.cruxy == true">
+              </td>
+              <td class="grade">
+                {{ line.grade }}
+              </td>
+            </tr>
+            <tr>
+              <td class="description" colspan="3">
+                {{ line.description }}
+                <span>Largo: {{ line.length }}</span>
+                <span *ngIf="line.crashpads > 0">Crashpads: {{ line.crashpads }}</span>
+                <span *ngIf="line.quickdraws > 0">Cintas: {{ line.quickdraws }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pitches">
+          <table *ngFor="let ll of line.routes; index as i" class="pitch">
+            <tbody>
+              <tr>
+                <td class="index">
+                  {{i + 1}}
+                </td>
+                <td class="description">
+                  {{ ll.description }} ({{ ll.length }}m)
+                  <img src="assets/imgs/dangerous.png" *ngIf="ll.dangerous == true">
+                  <img src="assets/imgs/route-icons-crimpy.svg" *ngIf="ll.crimpy == true">
+                  <img src="assets/imgs/route-icons-technical.svg" *ngIf="ll.technical == true">
+                  <img src="assets/imgs/route-icons-pumpy.svg" *ngIf="ll.pumpy == true">
+                  <img src="assets/imgs/route-icons-reachy.svg" *ngIf="ll.reachy == true">
+                  <img src="assets/imgs/route-icons-cruxy.svg" *ngIf="ll.cruxy == true">
+                </td>
+                <td class="grade">
+                  {{ ll.grade }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </ion-scroll>
+</ion-content>
+
+<ion-footer id="topo_image_footer">
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2>
+          <ion-buttons>
+            <button ion-button (click)="goToPrev()" class="next-prev">
+              <ion-icon name="ios-arrow-back"></ion-icon>
+            </button>
+          </ion-buttons>
+        </ion-col>
+        <ion-col col-8 id="topo_image_fullscreen">
+          <img src="assets/imgs/fullscreen.png" style="width: 25px; height: 25px" 
+                                                imageViewer="{{topoImage.local_topo_image}}">
+        </ion-col>
+        <ion-col col-2>
+          <ion-buttons>
+            <button ion-button icon-end (click)="goToNext()" class="next-prev">
+              <ion-icon name="ios-arrow-forward"></ion-icon>
+            </button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

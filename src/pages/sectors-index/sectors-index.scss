@@ -1,0 +1,15 @@
+page-sectors-index {
+  .card {
+    position: relative;
+    overflow: hidden;
+  }
+  .card ng-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    .ng-progress-bar {
+      position: absolute;
+    }
+  }
+}

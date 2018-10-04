@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="loader" id="sectors_show_tab_topo_images_loader">
+    <div class="loading"><div class="outer"></div><div class="inner"></div></div>
+  </div>
+  <ion-card *ngFor="let topoImage of topoImages" (click)="goToTopoImagesShowPage(topoImage)">
+    <img [src]="topoImage.local_topo_image" class="topo-image" (load)="topoImageLoaded()" 
+      (error)="topoImageLoaded()">
+  </ion-card>
+</ion-content>

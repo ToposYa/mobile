@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3> Dificultad del sector</h3>
+  <canvas id="sector_route_distribution_data" width="400" height="200"></canvas>
+
+  <div>
+    <h3>Descripcion</h3>
+    {{ sector.description_text }}
+  </div>
+
+  <div *ngIf="sector.access_text.length > 0" class="access-text">
+    <h3>Acceso</h3>
+    {{ sector.access_text }}
+  </div>
+
+  <div *ngIf="sector.required_gear_text.length > 0" class="access-text">
+    <h3>Equipo requerido</h3>
+    <ul>
+      <li *ngFor="let text of sector.required_gear_text">
+        {{text}}
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="sector.restriction_text.length > 0" class="access-text">
+    <h3>
+      Restricciones
+      <span *ngIf="restricted(sector)" class="restriction">
+      (actualmente dentro de la restriccion)</span>
+    </h3>
+    {{ sector.restriction_text }}
+  </div>
+
+  <div class="when-to-climb">
+    <h3> Cuando escalar</h3>
+    <table class="table table-sm when-to-climb">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Invierno</th>
+          <th>Primavera</th>
+          <th>Verano</th>
+          <th>Otono</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Mañana</th>
+          <td><span *ngIf="sector.conditions_when_to_climb[0]">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[1]">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[2]">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[3]">✔</span></td>
+        </tr>
+        <tr>
+          <th>Medio dia</th>
+          <td><span *ngIf="sector.conditions_when_to_climb[4] == true">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[5] == true">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[6] == true">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[7] == true">✔</span></td>
+        </tr>
+        <tr>
+          <th>Tarde</th>
+          <td><span *ngIf="sector.conditions_when_to_climb[8] == true">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[9] == true">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[10] == true">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[11] == true">✔</span></td>
+        </tr>
+        <tr>
+          <th>Noche</th>
+          <td><span *ngIf="sector.conditions_when_to_climb[12] == true">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[13] == true">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[14] == true">✔</span></td>
+          <td><span *ngIf="sector.conditions_when_to_climb[15] == true">✔</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>

@@ -1,0 +1,26 @@
+page-sectors-show-tab-info {
+  .access-text {
+    margin-top: 20px;
+  }
+
+  font-size: 120%;
+  line-height: 140%;
+
+  .when-to-climb {
+    margin-top: 20px;
+    font-size: 90%;
+    table {
+      width: 100%;
+      tbody {
+        td, th {
+          text-align: center;
+          padding-top: 5px;
+        }
+      }
+    }
+  }
+
+  .restriction {
+    color: red;
+  }
+}

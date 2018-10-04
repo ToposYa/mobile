@@ -1,0 +1,23 @@
+page-contact {
+  .webPage{
+    background: white;
+    height:100%;
+    width: 100%; 
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  ion-content{
+    background-image: url('file:///android_asset/www/assets/imgs/offline.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  #offline_message {
+    margin: 20px;
+    text-align: center;
+    display: none;
+    position: absolute;
+    font-size: 150%;
+    font-weight: 800;
+  }
+}
